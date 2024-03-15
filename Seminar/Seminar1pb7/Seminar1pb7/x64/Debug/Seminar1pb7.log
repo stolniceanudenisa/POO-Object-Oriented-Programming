@@ -1,0 +1,7 @@
+﻿  subalgSirStatic.cpp
+  testeSirStatic.cpp
+  Generating Code...
+subalgSirStatic.obj : error LNK2005: "void __cdecl afisareSirStatic(int,int,int)" (?afisareSirStatic@@YAXHHH@Z) already defined in Seminar1pb7.obj
+subalgSirStatic.obj : error LNK2005: "void __cdecl citireSirStatic(int * const,int &)" (?citireSirStatic@@YAXQEAHAEAH@Z) already defined in Seminar1pb7.obj
+subalgSirStatic.obj : error LNK2005: "void __cdecl rezolvareSirStatic(int * const,int,int &,int &,int &)" (?rezolvareSirStatic@@YAXQEAHHAEAH11@Z) already defined in Seminar1pb7.obj
+C:\Users\40766\source\repos\Seminar1pb7\x64\Debug\Seminar1pb7.exe : fatal error LNK1169: one or more multiply defined symbols found

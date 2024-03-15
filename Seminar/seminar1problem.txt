@@ -1,0 +1,76 @@
+/******************************************************************************
+
+
+
+Online C++ Compiler.
+Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+
+
+Write a C function which takes as input a floating point array arr of size sz,
+and returns the value of the maximum and minimum value within that array, as well as their positions.
+The signature of the function should be:
+
+
+
+struct Car* p <-this is a pointer
+float* variable <-this is a pointer
+
+
+
+*******************************************************************************/
+
+
+
+#include <iostream>
+#include <assert.h>
+
+
+
+using namespace std;
+
+
+
+void min_max_loc(float arr[], int sz, float* min, float* max, int *minLoc, int*maxLoc);//dataType* <-this is a pointer
+
+
+
+int main()
+{​​
+float arr[] = {​​1, 54, 67, -2, 0, -45, 12, 2}​​, min, max;
+unsigned int n = 8;
+int minLoc, maxLoc;
+// & - address of &min -> address of min (whres is min stored in the memory)
+min_max_loc(arr,n,&min,&max,&minLoc,&maxLoc);
+
+assert(min == -45 && minLoc == 5 && max == 67 && maxLoc == 2);
+
+printf("MinVal= %.2f minLoc= %d \nMaxVal= %.3f maxLoc= %d",min,minLoc,max,maxLoc);
+return 0;
+}​​
+
+
+
+void min_max_loc(float arr[], int sz, float* min, float* max, int *minLoc, int*maxLoc){​​
+
+// min - a memory location (pointer) 0x123AC
+// min = arr[0]; min point to the address 1
+
+// we want to change the value stored at the addres min 0x123AC
+// dereferincing operator *
+// *min -> the values stored at the address min
+// *min = array[0];
+*min = arr[0];
+*minLoc = 0;
+*max = arr[0];
+*maxLoc = 0;
+
+for(int i = 1; i < sz; i ++){​​
+if(arr[i] < *min)
+*min = arr[i], *minLoc = i;
+
+if(arr[i] > *max)
+*max = arr[i], *maxLoc = i;
+}​​
+}​​

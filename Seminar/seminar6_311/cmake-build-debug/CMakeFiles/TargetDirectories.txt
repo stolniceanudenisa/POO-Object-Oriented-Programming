@@ -1,0 +1,3 @@
+C:/Users/user/CLionProjects/seminar6_311/cmake-build-debug/CMakeFiles/seminar6_311.dir
+C:/Users/user/CLionProjects/seminar6_311/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/user/CLionProjects/seminar6_311/cmake-build-debug/CMakeFiles/rebuild_cache.dir

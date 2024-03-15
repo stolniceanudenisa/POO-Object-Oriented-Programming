@@ -1,0 +1,4 @@
+Maria 12
+Alex 10
+Rares 14
+George 40

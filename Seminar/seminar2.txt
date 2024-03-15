@@ -1,0 +1,140 @@
+MAIN: 
+
+#include "dynamic_array.h"
+#include<stdlib.h>
+#include<iostream>
+using namespace std;
+
+
+typedef struct {
+	float r, i;
+} complex;
+
+bool isEven(void* elem) {
+//	(int*)eleme - > int*
+	return *((int*)elem )% 2 == 0;
+}
+
+bool isNegative(void* elem) {
+	return *((int*)elem) < 0;
+}
+
+void printInt(void* a) {
+	int* ai = (int*) a;
+	cout << *ai<<" ";
+}
+
+void printComplex(void* a) {
+	complex* ai = (complex*)a;
+	cout << ai->r<<" "<<ai->i << "i; ";
+}
+
+
+
+int main() {
+	DynamicArray* test = create(10);
+
+	DynamicArray* arrCOmplex = create(10);
+	complex* el = new complex;
+	el->i = 10;
+	el->r = 20;
+	insert(arrCOmplex, (void*)el);
+	display(arrCOmplex, printComplex);
+
+	display(test, printInt);
+	for (int i = 0; i < 30; i++) {
+		int* a = new int;
+		*a = rand() % 20;
+		insert(test,(void*)a);
+		if (i % 10 == 0) {
+			display(test, printInt);
+		}
+	}
+	cout <<"The index of the first number: "<< search(test, isEven) << endl;
+	cout << search(test, isNegative);
+
+	release(test);
+	return 0;
+}
+
+
+
+
+HEADER: 
+
+#pragma once
+
+
+
+typedef struct {
+	unsigned int cap;
+	unsigned int len;
+	void** data; // DynamicArray of void*
+}DynamicArray;
+
+DynamicArray* create(unsigned int initialCap);
+
+void insert(DynamicArray* a, void* elem);
+
+void deleteLast(DynamicArray* a);
+
+void display(DynamicArray* a, void (*displayElement)(void*));
+
+void release(DynamicArray* a);
+
+int search(DynamicArray* a, bool (*condition)(void*));
+
+
+.CPP FILE:
+
+#include "dynamic_array.h"
+#include <iostream>
+using namespace std;
+
+DynamicArray* create(unsigned int initialCap) {
+	DynamicArray* result = new DynamicArray;
+	result->len = 0;
+	result->cap = initialCap;
+	result->data = new void*[initialCap];
+	return result;
+}
+
+void insert(DynamicArray* a, void* elem) {
+	if (a->len == a->cap) {
+		a->cap = a->cap * 2;
+		void** newArray = new void*[a->cap];
+		for (unsigned int i = 0; i < a->len; i++) {
+			newArray[i] = a->data[i];
+		}
+		delete[] a->data;
+		a->data = nullptr;
+		a->data = newArray;
+	}
+	a->data[a->len++] = elem;
+}
+
+void display(DynamicArray* a, void (*displayElement)(void*)) {
+	for (unsigned int i = 0; i < a->len; i++) {
+		displayElement(a->data[i]);
+	}
+	cout << endl;
+}
+
+void release(DynamicArray* a) {
+	delete[] a->data;
+	delete a;
+	a = nullptr;
+}
+int search(DynamicArray* a, bool(*condition)(void*)) {
+	for (unsigned int i = 0; i < a->len; i++) {
+		if (condition(a->data[i])) {
+			return i;
+		}
+	}
+	return -1;
+}
+/*
+void deleteLast() {
+
+}
+*/

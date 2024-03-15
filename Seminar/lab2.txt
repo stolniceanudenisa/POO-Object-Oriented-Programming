@@ -1,0 +1,56 @@
+double sigmoid(double x); //exp(x) = e^x  (#inlcude <math.h>)
+
+double* sigmoid(double *x,int size);  //method/function overloading
+
+double* sigmoid(double *x,int size) {
+	//S same size as x, S - output of the function
+	//S[i] = sigmoid(x[i]);
+	
+	int i = 0;
+	~double S[size];~
+	
+	double* S=new double[size]; //an array of the same size as x, ON THE HEAP
+	
+	//S - the adress of the first element of the array S
+
+	//S+1 - the adress of the second of the array S
+
+	//S[i] - what is the adress? S+i
+
+	//the value stored at S+i? *(S+i) == S[i]
+
+	//& - adress of ; * - value stored at an adress
+
+	for(i=0;i<size;i++) {
+		//S[i] = sigmoid(x[i]);
+		*(S+i)= sigmoid(*(x+i));
+	
+	}
+	return S;
+
+}
+
+//int* start_index - where the start_index is stored in memory
+
+longes_smiling_subarray(double  S[],int length,double th,int* start_index,int* end_index);
+
+//*start_index -  the values stored at the pointer start_index
+
+void longes_smiling_subarray(double  S[],int length,double th,int* start_index,int* end_index) {
+	*start_index=0;
+	*end_index=0;
+	int currentCount=0, maxLength=0, potential_i=0;
+	for (int i=0;i<length;i++){
+		
+		if (S[i] >= th) {     //altfel:  if (*(S+i) >= th)
+			current_count++;
+		}
+		if (current_count > maxLength) {
+			maxLenght = currentLength;
+			potential_i=i;
+		}
+
+	}
+	*start_index = potential_i-maxLength;
+	*end_index = potential_i;
+}
