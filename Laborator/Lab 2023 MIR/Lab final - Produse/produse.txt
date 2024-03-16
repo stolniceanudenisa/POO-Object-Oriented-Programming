@@ -1,0 +1,10 @@
+1,tiramisu,11,4
+2,briosa,6,5
+3,tort,30,3
+4,cheesecake,9,9
+5,ecler,16,11
+6,savarina,34,2
+7,ciocolata,2,0
+8,torturi,300,1
+9,croissant,12,3
+10,macarons,99,9

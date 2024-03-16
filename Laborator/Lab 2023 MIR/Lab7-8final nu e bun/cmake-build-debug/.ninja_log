@@ -1,0 +1,9 @@
+# ninja log v5
+3	619	7042260050453874	CMakeFiles/Lab7_8final.dir/main.cpp.obj	d73fa0808de5611d
+2	168	7044586546643193	build.ninja	e4927963a8c91341
+6	310	7038951998693295	CMakeFiles/Lab7_8final.dir/tranzactie.cpp.obj	580bad4be79ce1fe
+9	672	7042260050994778	CMakeFiles/Lab7_8final.dir/repo.cpp.obj	9a73218ba0070f1e
+27	643	7042260050705554	CMakeFiles/Lab7_8final.dir/UI.cpp.obj	c660581816876291
+766	957	7042260162483814	Lab7_8final.exe	50d3a92d3948d8e5
+4	765	7042260160696827	CMakeFiles/Lab7_8final.dir/service.cpp.obj	49988c67b78c7112
+16	716	7042260051443579	CMakeFiles/Lab7_8final.dir/teste.cpp.obj	563d941fa35ae1d1

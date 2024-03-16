@@ -1,0 +1,18 @@
+# ninja log v5
+19	766	7022272482632889	CMakeFiles/lab4.dir/main.cpp.obj	1db46495b3173273
+42	233	7022272477153561	CMakeFiles/lab4.dir/operations.cpp.obj	3fa8c9acdad2afb
+234	946	7022272484433304	CMakeFiles/lab4.dir/meniu.cpp.obj	17f17b720656ce95
+825	1468	7022272489667927	CMakeFiles/lab4.dir/meniuOperations.cpp.obj	fc9fbc107fa352b
+8	825	7022272483122999	CMakeFiles/lab4.dir/Entitate.cpp.obj	ed62d1f28dc0b2ac
+1468	1617	7022272491084519	lab4.exe	278c25325a0f1c7a
+767	1426	7022272489237825	CMakeFiles/lab4.dir/test.cpp.obj	bbe3d6618dcc415d
+29	849	7022272483403068	CMakeFiles/lab4.dir/Repo.cpp.obj	7a3052beb3f7b6cc
+3	181	7025814179883835	build.ninja	e942e59914b3784d
+35	336	7025814183115900	CMakeFiles/lab4.dir/operations.cpp.obj	91fc0e54170e6a98
+13	798	7025814188338032	CMakeFiles/lab4.dir/meniu.cpp.obj	e3800feb67bd9dae
+7	829	7025814188547477	CMakeFiles/lab4.dir/Entitate.cpp.obj	d77e450c80051b18
+1	855	7025814188916489	CMakeFiles/lab4.dir/main.cpp.obj	6c8e29b2d6e0ef2a
+20	875	7025814189260810	CMakeFiles/lab4.dir/Repo.cpp.obj	1652749c5bf196ae
+27	877	7025814189280758	CMakeFiles/lab4.dir/meniuOperations.cpp.obj	a82f14ed19bfc053
+337	1042	7025814190958369	CMakeFiles/lab4.dir/test.cpp.obj	cf5027d9ec998b9b
+1042	1165	7025814192157947	lab4.exe	9cfe15fa193c20c4

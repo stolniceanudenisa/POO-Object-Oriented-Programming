@@ -1,0 +1,3 @@
+C:/Users/40766/OneDrive/Desktop/OOP-lab6-14-master/cmake-build-debug/CMakeFiles/lab6_7.dir
+C:/Users/40766/OneDrive/Desktop/OOP-lab6-14-master/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/40766/OneDrive/Desktop/OOP-lab6-14-master/cmake-build-debug/CMakeFiles/rebuild_cache.dir

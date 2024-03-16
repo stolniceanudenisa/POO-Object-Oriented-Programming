@@ -1,0 +1,8 @@
+# ninja log v5
+33	697	7033681341678331	CMakeFiles/Lab_5_14.dir/Solution/Repositories/RepositoryFile.cpp.obj	d78d7af71b018e5d
+2	733	7033681342107188	CMakeFiles/Lab_5_14.dir/Solution/Repositories/Repository.cpp.obj	d24351a3a046781b
+9	741	7033681342147082	CMakeFiles/Lab_5_14.dir/Solution/Repositories/RepositoryMemory.cpp.obj	aae2052d8e240ea4
+18	991	7033681344710801	CMakeFiles/Lab_5_14.dir/Solution/Repositories/RepositoryCSV.cpp.obj	2bcf768dd75c8a84
+25	1019	7033681345019980	CMakeFiles/Lab_5_14.dir/Solution/Repositories/RepositoryHTML.cpp.obj	806d4063718156de
+53	1118	7033681345998504	CMakeFiles/Lab_5_14.dir/Solution/Tests/tests.cpp.obj	6e4335745d579711
+734	1374	7033681348556151	CMakeFiles/Lab_5_14.dir/Solution/Service/Service.cpp.obj	5a38b8a1c9cc1e59

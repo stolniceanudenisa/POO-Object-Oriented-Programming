@@ -1,0 +1,3 @@
+C:/Users/40766/OneDrive/Desktop/aa/Lab7-8final/cmake-build-debug/CMakeFiles/Lab7_8final.dir
+C:/Users/40766/OneDrive/Desktop/aa/Lab7-8final/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/40766/OneDrive/Desktop/aa/Lab7-8final/cmake-build-debug/CMakeFiles/rebuild_cache.dir

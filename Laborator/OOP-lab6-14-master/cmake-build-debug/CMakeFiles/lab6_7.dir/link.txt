@@ -1,0 +1,3 @@
+"C:\JOCURI\CLion 2022.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\lab6_7.dir/objects.a
+C:\JOCURI\CLION2~1.4\bin\mingw\bin\ar.exe qc CMakeFiles\lab6_7.dir/objects.a @CMakeFiles\lab6_7.dir\objects1.rsp
+C:\JOCURI\CLION2~1.4\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\lab6_7.dir/objects.a -Wl,--no-whole-archive -o lab6_7.exe -Wl,--out-implib,liblab6_7.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\lab6_7.dir\linklibs.rsp

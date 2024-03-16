@@ -1,0 +1,15 @@
+﻿  RepoFile.cpp
+C:\Users\40766\CLionProjects\Lab9-10File\RepoFile.cpp(78,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\40766\CLionProjects\Lab9-10File\RepoFile.cpp(78,50): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  repo.cpp
+C:\Users\40766\CLionProjects\Lab9-10File\repo.cpp(30,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  service.cpp
+  ui.cpp
+C:\Users\40766\CLionProjects\Lab9-10File\ui.cpp(137,44): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  ValidatorProdus.cpp
+C:\Users\40766\source\repos\aaaaa\ValidatorProdus.cpp(12,68): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+C:\Users\40766\source\repos\aaaaa\ValidatorProdus.cpp(13,1): warning C5043: 'ValidatorProdus::validate': exception specification does not match previous declaration
+C:\Users\40766\source\repos\aaaaa\ValidatorProdus.h(8,7): message : see declaration of 'ValidatorProdus::validate'
+  Generating Code...
+C:\Users\40766\CLionProjects\Lab9-10File\service.cpp(89): warning C4715: 'Service::buyProdus': not all control paths return a value
+  aaaaa.vcxproj -> C:\Users\40766\source\repos\aaaaa\x64\Debug\aaaaa.exe

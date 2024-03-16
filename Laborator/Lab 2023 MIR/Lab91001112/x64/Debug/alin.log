@@ -1,0 +1,18 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (alin.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Lab91001112.cpp
+  repofile.cpp
+C:\Users\40766\source\repos\Lab91001112\repofile.cpp(56,12): warning C4804: '~': unsafe use of type 'bool' in operation
+C:\Users\40766\source\repos\Lab91001112\repo.h(122,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\40766\source\repos\Lab91001112\repo.h(121,32): message : while compiling class template member function 'int Repository<std::pair<Produs,int>>::size(void)'
+C:\Users\40766\source\repos\Lab91001112\repofile.cpp(35,4): message : see reference to function template instantiation 'int Repository<std::pair<Produs,int>>::size(void)' being compiled
+C:\Users\40766\source\repos\Lab91001112\repofile.h(8,61): message : see reference to class template instantiation 'Repository<std::pair<Produs,int>>' being compiled
+  service.cpp
+  teste.cpp
+C:\Users\40766\source\repos\Lab91001112\repo.h(122,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\40766\source\repos\Lab91001112\repo.h(121,32): message : while compiling class template member function 'int Repository<int>::size(void)'
+C:\Users\40766\source\repos\Lab91001112\teste.cpp(81,5): message : see reference to function template instantiation 'int Repository<int>::size(void)' being compiled
+C:\Users\40766\source\repos\Lab91001112\teste.cpp(77,21): message : see reference to class template instantiation 'Repository<int>' being compiled
+  ui.cpp
+  Generating Code...
+C:\Users\40766\source\repos\Lab91001112\service.cpp(132): warning C4715: 'Service::buyProdus': not all control paths return a value
+  alin.vcxproj -> C:\Users\40766\source\repos\Lab91001112\x64\Debug\Lab9101112.exe

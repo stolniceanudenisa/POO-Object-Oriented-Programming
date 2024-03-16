@@ -1,0 +1,21 @@
+[2023-03-27 21:24:50] [info] Start Program:
+Path:"D:\Laboratoare\OOP\lab5\Lab4, Culidiuc Maria\x64\Debug\Lab4, Culidiuc Maria.exe"
+Arguments:
+Working directory: "D:\Laboratoare\OOP\lab5\Lab4, Culidiuc Maria\Lab4, Culidiuc Maria\"
+Modules: Selected: D:\Laboratoare\OOP\lab5\Lab4, Culidiuc Maria\x64\Debug\Lab4, Culidiuc Maria.exe Excluded: 
+Sources: Selected: D:\Laboratoare\OOP\lab5\Lab4, Culidiuc Maria\Lab4, Culidiuc Maria Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: Binary C:\Users\Filip Stefan\AppData\Local\Temp\hkh4otsk.rvy 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+
+[2023-03-27 21:24:50] [info] Module: D:\Laboratoare\OOP\lab5\Lab4, Culidiuc Maria\x64\Debug\Lab4, Culidiuc Maria.exe is selected because it matches selected pattern: D:\Laboratoare\OOP\lab5\Lab4, Culidiuc Maria\x64\Debug\Lab4, Culidiuc Maria.exe
+[2023-03-27 21:24:50] [info] ----------------------------------------------------
+[2023-03-27 21:24:50] [info] Coverage binary generated in file: C:\Users\Filip Stefan\AppData\Local\Temp\hkh4otsk.rvy
+[2023-03-27 21:24:50] [info] ----------------------------------------------------

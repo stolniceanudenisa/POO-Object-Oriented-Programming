@@ -1,0 +1,47 @@
+Problem 1:
+
+#include <stdio.h>
+
+int main()
+{
+    // Input: the name of the user
+    char name[50];
+    unsigned int age;
+    printf("\t Hello! Please enter your name: \n");
+    scanf("%s", name);  //reads up until the first space
+    scanf("%u", &age);
+    printf("Hello, %s, of age %u, welcome to the laboratory!\n", name, age);
+    
+    
+    return 0;
+}
+
+Problem 3:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    unsigned int year, day, A, B, C, D, E;
+    char month;
+    printf("Enter the year: \n");
+    scanf("%u", &year);
+    month="March";
+    A=year%19;
+    B=year%4;
+    C=year%7;
+    D=(19*A + 24)%30;
+    E=(2*B + 4*C + 6*D + 5)%7;
+    day = 22 + E + D;
+    if(day<31)
+    {
+        printf("Easter falls on the %u of %s \n", day, month);
+    }
+    else
+    {
+        month = "April";
+        printf("Easter falls on the %u of %s \n", day, month);
+    }
+}
+
+

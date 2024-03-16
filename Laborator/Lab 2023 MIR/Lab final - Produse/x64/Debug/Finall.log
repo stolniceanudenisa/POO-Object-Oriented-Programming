@@ -1,0 +1,3 @@
+﻿  repos.cpp
+C:\Users\40766\source\repos\Finall\repos.cpp(32,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Finall.vcxproj -> C:\Users\40766\source\repos\Finall\x64\Debug\Finall.exe

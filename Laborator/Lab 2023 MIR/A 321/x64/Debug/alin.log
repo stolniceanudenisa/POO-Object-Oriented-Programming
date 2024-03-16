@@ -1,0 +1,6 @@
+﻿  teste.cpp
+C:\Users\40766\source\repos\alin\repo.h(105,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\40766\source\repos\alin\repo.h(104,32): message : while compiling class template member function 'int Repository<int>::size(void)'
+C:\Users\40766\source\repos\alin\teste.cpp(81,5): message : see reference to function template instantiation 'int Repository<int>::size(void)' being compiled
+C:\Users\40766\source\repos\alin\teste.cpp(77,21): message : see reference to class template instantiation 'Repository<int>' being compiled
+  alin.vcxproj -> C:\Users\40766\source\repos\alin\x64\Debug\alin.exe

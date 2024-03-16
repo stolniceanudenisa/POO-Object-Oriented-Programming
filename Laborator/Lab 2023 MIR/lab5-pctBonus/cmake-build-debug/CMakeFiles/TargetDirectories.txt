@@ -1,0 +1,3 @@
+C:/Users/40766/OneDrive/Desktop/lab5-pctBonus/cmake-build-debug/CMakeFiles/lab4.dir
+C:/Users/40766/OneDrive/Desktop/lab5-pctBonus/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/40766/OneDrive/Desktop/lab5-pctBonus/cmake-build-debug/CMakeFiles/rebuild_cache.dir
