@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 2\Lecture2\StackHeap\main.cpp(22,9): warning C4101: 'a': unreferenced local variable
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 2\Lecture2\StackHeap\main.cpp(18): warning C4717: 'recursion': recursive on all control paths, function will cause runtime stack overflow
+  StackHeap.vcxproj -> D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 2\Lecture2\x64\Debug\StackHeap.exe

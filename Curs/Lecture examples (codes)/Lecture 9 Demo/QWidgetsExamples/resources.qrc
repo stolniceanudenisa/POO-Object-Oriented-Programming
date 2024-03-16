@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/planets">
+        <file alias="callisto.jpg">images/planets/callisto.jpg</file>
+        <file alias="earth.jpg">images/planets/earth.jpg</file>
+        <file alias="jupiter.jpg">images/planets/jupiter.jpg</file>
+        <file alias="mercury.jpg">images/planets/mercury.jpg</file>
+        <file alias="moon.jpg">images/planets/moon.jpg</file>
+        <file alias="neptune.jpg">images/planets/neptune.jpg</file>
+        <file alias="saturn.jpg">images/planets/saturn.jpg</file>
+        <file alias="sun.jpg">images/planets/sun.jpg</file>
+        <file alias="uranus.jpg">images/planets/uranus.jpg</file>
+        <file alias="venus.jpg">images/planets/venus.jpg</file>
+    </qresource>
+</RCC>

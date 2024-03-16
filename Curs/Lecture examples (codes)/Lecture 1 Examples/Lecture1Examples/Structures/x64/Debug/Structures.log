@@ -1,0 +1,4 @@
+﻿  main.cpp
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 1 Examples\Lecture1Examples\Structures\main.cpp(19,13): warning C4101: 'i2': unreferenced local variable
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 1 Examples\Lecture1Examples\Structures\main.cpp(19,9): warning C4101: 'i1': unreferenced local variable
+  Structures.vcxproj -> D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 1 Examples\Lecture1Examples\x64\Debug\Structures.exe

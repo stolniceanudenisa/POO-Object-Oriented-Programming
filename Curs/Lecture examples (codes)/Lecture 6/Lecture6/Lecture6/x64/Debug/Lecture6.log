@@ -1,0 +1,18 @@
+﻿  unruh.cpp
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(14,22): error C2906: 'is_prime<0,0>': explicit specialization requires 'template <>'
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(15,22): error C2906: 'is_prime<0,1>': explicit specialization requires 'template <>'
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(16,23): error C2906: 'Prime_print<2>': explicit specialization requires 'template <>'
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(20,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9,22): error C2079: 'Prime_print<3>::a' uses undefined struct 'Prime_print<2>'
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<3>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<4>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<5>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<6>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<7>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<8>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(9): message : see reference to class template instantiation 'Prime_print<9>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(21): message : see reference to class template instantiation 'Prime_print<10>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(5,63): error C2027: use of undefined type 'is_prime<0,1>'
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(15): message : see declaration of 'is_prime<0,1>'
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(10): message : see reference to class template instantiation 'is_prime<3,2>' being compiled
+D:\#Facultate\Cluj\Anul I\Semestrul 2\OOP\Course\Lecture examples (codes)\Lecture 6\Lecture6\Lecture6\unruh.cpp(5,54): error C2065: 'prim': undeclared identifier
