@@ -1,0 +1,909 @@
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+class Persoana {
+protected:
+    std::string nume;
+    int varsta;
+
+public:
+    Persoana(const string& nume, int varsta) : nume(nume), varsta(varsta) {}
+
+    virtual string toString() const {
+        return "Nume: " + nume + ", Varsta: " + std::to_string(varsta);
+    }
+};
+
+class Student : public Persoana {
+private:
+    double medie;
+
+public:
+    Student(const :string& nume, int varsta, double medie) : Persoana(nume, varsta), medie(medie) {}
+
+    string toString() const override {
+        return Persoana::toString() + ", Medie: " + std::to_string(medie);
+    }
+};
+
+int main() {
+    std::vector<Persoana*> vectorPersoane;
+
+    Persoana* persoana1 = new Persoana("Maria", 20);
+    Persoana* persoana2 = new Persoana("Ana", 30);
+    Student* student = new Student("Ionica", 20, 9.5);
+
+    vectorPersoane.push_back(persoana1);
+    vectorPersoane.push_back(persoana2);
+    vectorPersoane.push_back(student);
+
+    // Afișarea elementelor din vector
+    for (const auto& persoana : vectorPersoane) {
+        std::cout << persoana->toString() << std::endl;
+    }
+
+    // Eliberarea memoriei
+    delete persoana1;
+    delete persoana2;
+    delete student;
+
+    return 0;
+}
+
+
+
+
+///////
+
+
+#include <iostream>
+#include <string>
+
+class Persoana {
+protected:
+    std::string nume;
+    int varsta;
+
+public:
+    Persoana() : nume(""), varsta(0) {}
+    Persoana(const std::string& nume, int varsta) : nume(nume), varsta(varsta) {}
+    Persoana(const Persoana& other) : nume(other.nume), varsta(other.varsta) {}
+
+    Persoana& operator=(const Persoana& other) {
+        if (this != &other) {
+            nume = other.nume;
+            varsta = other.varsta;
+        }
+        return *this;
+    }
+
+    bool operator==(const Persoana& other) const {
+        return (nume == other.nume) && (varsta == other.varsta);
+    }
+
+    std::string toString() const {
+        return "Nume: " + nume + ", Varsta: " + std::to_string(varsta);
+    }
+};
+
+class Student : public Persoana {
+private:
+    double medie;
+
+public:
+    Student() : Persoana(), medie(0.0) {}
+    Student(const std::string& nume, int varsta, double medie) : Persoana(nume, varsta), medie(medie) {}
+    Student(const Student& other) : Persoana(other), medie(other.medie) {}
+
+    Student& operator=(const Student& other) {
+        if (this != &other) {
+            Persoana::operator=(other);
+            medie = other.medie;
+        }
+        return *this;
+    }
+
+    bool operator==(const Student& other) const {
+        return Persoana::operator==(other) && (medie == other.medie);
+    }
+
+    std::string toString() const {
+        return Persoana::toString() + ", Medie: " + std::to_string(medie);
+    }
+};
+
+int main() {
+    Persoana persoana1("Maria", 20);
+    Persoana persoana2("Ana", 30);
+    Student student1("Ionica", 20, 9.5);
+    Student student2("Ionica", 20, 9.5);
+
+    Persoana persoana3 = persoana1; // Constructor de copiere
+    Persoana persoana4;
+    persoana4 = persoana2; // Operator de atribuire
+
+    bool isEqual = (persoana1 == persoana2); // Operator boolean
+    bool isEqualStudent = (student1 == student2); // Operator boolean
+
+    std::cout << persoana3.toString() << std::endl;
+    std::cout << persoana4.toString() << std::endl;
+    std::cout << isEqual << std::endl;
+    std::cout << isEqualStudent << std::endl;
+
+    return 0;
+}
+
+///////////////////
+
+
+
+
+
+
+
+
+
+ 
+
+class Produs {
+protected:
+	char* name;
+	int pret;
+public:
+	Produs() {
+		name = NULL;
+		pret = 0;
+	}
+	Produs(const char* n, int a) {
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+		pret = a;
+	}
+	Produs(const Produs& s) {
+		name = new char[strlen(s.name) + 1];
+		strcpy_s(name, strlen(s.name) + 1, s.name);
+		pret = s.pret;
+	}
+	~Produs() {
+		if (name) {
+			delete[] name;
+			name = NULL;
+		}
+	}
+	virtual Produs* clone() {
+		Produs* newProdus = new Produs();
+		newProdus->setName(this->name);
+		newProdus->pret = pret;
+		return newProdus;
+	}
+	char* getName() {
+		return name;
+	}
+	int getPret() {
+		return pret;
+	}
+	void setName(char* n) {
+		if (name != NULL) {
+			delete[] name;
+			name = NULL;
+		}
+		name = new char[strlen(n) + 1];
+		strcpy_s(name, strlen(n) + 1, n);
+	}
+	void setPret(int a) {
+		pret = a;
+	}
+	virtual Produs& operator=(const Produs& s) {
+		if (this->name != NULL) delete[] this->name;
+		name = new char[strlen(s.name) + 1];
+		strcpy_s(name, strlen(s.name)+1, s.name);
+		this->pret = s.pret;
+		return *this;
+	}
+	//bool operator==(const Produs& s);
+	virtual void printInfo() {
+		cout << "produs: " << name << " " << pret << endl;
+	}
+
+	virtual char* toString() {
+		int l = strlen("Produs: ") + strlen(name) + 6 + 1;
+		char* s = new char[l];
+		strcpy_s(s, l, "Produs: ");
+		strcat_s(s, l, name);
+		char* aux = new char[6];
+		_itoa_s(pret, aux, 6, 10);
+		strcat_s(s, l, aux);
+		delete[] aux;
+		return s;
+	}
+
+	friend istream& operator>>(istream& is, Produs& p)
+	{
+		cout << "Introduceti nume:";
+		char* name = new char[10];
+		cin >> name;
+		p.setName(name);
+		delete[] name;
+
+		cout << "Introduceti pret: ";
+		int pret;
+		cin >> pret;
+		p.setPret(pret);
+
+		return is;
+	}
+	 
+	friend ostream& operator<<(ostream& os, Produs& p)
+	{
+		cout << "produs: " << p.name << " " << p.pret << endl;
+		return os;
+	}
+
+};
+
+#endif
+
+
+
+ 
+#ifndef PRODUSSARAT_H
+#define PRODUSSARAT_H
+#include "Produs.h"
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class ProdusSarat : public Produs {
+private:
+	int cantitateSare;
+public:
+	ProdusSarat() : Produs() {
+		cantitateSare = 0;
+	}
+	ProdusSarat(const char* n, int a, int c) : Produs(n, a) {
+		cantitateSare = c;
+	}
+	ProdusSarat(const ProdusSarat& s) : Produs(s) {
+		cantitateSare = s.cantitateSare;
+	}
+	~ProdusSarat() {
+	}
+	Produs* clone() {
+		ProdusSarat* newProdus = new ProdusSarat();
+		newProdus->setName(this->name);
+		newProdus->pret = pret;
+		newProdus->cantitateSare = cantitateSare;
+		return newProdus;
+	}
+	int getCantitateSare() {
+		return cantitateSare;
+	}
+
+	void setCantitateSare(int c) {
+		cantitateSare = c;
+	}
+
+	ProdusSarat& operator=(Produs& s) {
+		if (this->name != NULL) delete[] this->name;
+		name = new char[strlen(s.getName()) + 1];
+		strcpy_s(name, strlen(s.getName()) + 1, s.getName());
+		this->pret = s.getPret();
+		return *this;
+	}
+	//Produs& operator=(const Produs& s);
+	//ProdusSarat& operator=(const ProdusSarat& s);
+	//bool operator==(const Produs& s);
+	void printInfo() {
+		cout << "produs sarat: " << name << " " << pret << " " << cantitateSare << '\n';
+	}
+	char* toString() {
+		int l = strlen("Produs sarat: ") + strlen(name) + 6 + 6 + 1;
+		char* s = new char[l];
+		strcpy_s(s, l, "Produs sarat: ");
+		strcat_s(s, l, name);
+		char* aux = new char[6];
+		_itoa_s(pret, aux, 6, 10);
+		strcat_s(s, l, aux);
+		delete[] aux;
+		aux = new char[6];
+		_itoa_s(cantitateSare, aux, 6, 10);
+		strcat_s(s, l, aux);
+		delete[] aux;
+		return s;
+	}
+
+	friend istream& operator>>(istream& is, ProdusSarat& p)
+	{
+		cout << "Introduceti nume:";
+		char* name = new char[10];
+		cin >> name;
+		p.setName(name);
+		delete[] name;
+
+		cout << "Introduceti pret: ";
+		int pret;
+		cin >> pret;
+		p.setPret(pret);
+
+		cout << "Introduceti cantitate sare: ";
+		int cantitate;
+		cin >> cantitate;
+		p.setCantitateSare(cantitate);
+
+		return is;
+	}
+
+	friend ostream& operator<<(ostream& os, ProdusSarat& p)
+	{
+		cout << "produs: " << p.name << " " << p.pret << " " << p.cantitateSare << endl;
+		return os;
+	}
+
+};
+
+
+
+#endif
+
+class ProdusDulce : public Produs {
+private:
+	int cantitateZahar;
+public:
+	ProdusDulce() : Produs() {
+		cantitateZahar = 0;
+	}
+	ProdusDulce(const char* n, int a, int c) : Produs(n, a) {
+		cantitateZahar = c;
+	}
+	ProdusDulce(const ProdusDulce& s) : Produs(s) {
+		cantitateZahar = s.cantitateZahar;
+	}
+	~ProdusDulce() {
+	}
+	int getCantitateZahar() {
+		return cantitateZahar;
+	}
+
+	void setCantitateZahar(int c) {
+		cantitateZahar = c;
+	}
+
+	//Produs& operator=(const Produs& s);
+	//bool operator==(const Produs& s);
+	void printInfo() {
+		cout << "produs dulce: " << name << " " << pret << " " << cantitateZahar << '\n';
+	}
+
+	//friend istream& operator>>(istream& is, Produs& r);
+	//friend ostream& operator<<(ostream& os, Produs& r);
+
+};
+
+#ifndef PRODUSDULCE_H
+#define PRODUSDULCE_H
+#include "Produs.h"
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+class ProdusDulce : public Produs {
+private:
+	int cantitateZahar;
+public:
+	ProdusDulce() : Produs() {
+		cantitateZahar = 0;
+	}
+	ProdusDulce(const char* n, int a, int c) : Produs(n, a) {
+		cantitateZahar = c;
+	}
+	ProdusDulce(const ProdusDulce& s) : Produs(s) {
+		cantitateZahar = s.cantitateZahar;
+	}
+	~ProdusDulce() {}
+	Produs* clone() {
+		ProdusDulce* newProdus = new ProdusDulce();
+		newProdus->setName(this->name);
+		newProdus->pret = pret;
+		newProdus->cantitateZahar = cantitateZahar;
+		return newProdus;
+	}
+	char* toString() {
+		int l = strlen("Produs dulce: ") + strlen(name) + 6 + 6 + 1;
+		char* s = new char[l];
+		strcpy_s(s, l, "Produs dulce: ");
+		strcat_s(s, l, name);
+		char* aux = new char[6];
+		_itoa_s(pret, aux, 6, 10);
+		strcat_s(s, l, aux);
+		delete[] aux;
+		aux = new char[6];
+		_itoa_s(cantitateZahar, aux, 6, 10);
+		strcat_s(s, l, aux);
+		delete[] aux;
+		return s;
+	}
+	int getCantitateZahar() {
+		return cantitateZahar;
+	}
+
+	void setCantitateZahar(int c) {
+		cantitateZahar = c;
+	}
+
+	ProdusDulce& operator=(ProdusDulce& s) {
+		if (this->name != NULL) delete[] this->name;
+		name = new char[strlen(s.getName()) + 1];
+		strcpy_s(name, strlen(s.getName()) + 1, s.getName());
+		this->pret = s.getPret();
+		this->cantitateZahar = s.cantitateZahar;
+		return *this;
+	}
+
+	//Produs& operator=(const Produs& s);
+	//bool operator==(const Produs& s);
+
+
+	void printInfo() {
+		cout << "produs dulce: " << name << " " << pret << " " << cantitateZahar << '\n';
+	}
+
+	friend istream& operator>>(istream& is, ProdusDulce& p)
+	{
+		cout << "Introduceti nume:";
+		char* name = new char[10];
+		cin >> name;
+		p.setName(name);
+		delete[] name;
+
+		cout << "Introduceti pret: ";
+		int pret;
+		cin >> pret;
+		p.setPret(pret);
+
+		cout << "Introduceti cantitate zahar: ";
+		int cantitate;
+		cin >> cantitate;
+		p.setCantitateZahar(cantitate);
+
+		return is;
+	}
+
+	friend ostream& operator<<(ostream& os, ProdusDulce& p)
+	{
+		cout << "produs: " << p.name << " " << p.pret << " " << p.cantitateZahar << endl;
+		return os;
+	}
+
+};
+
+
+ 
+
+////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////
+
+
+Flower::Flower(char* n, int p){
+	cout << "constructor with param" << endl;
+	this->name = new char[strlen(n) + 1];
+	strcpy_s(this->name, strlen(n) + 1, n);
+	this->price = p;
+}
+
+
+
+
+//Descr: create a flower using info from another flower
+//In: a flower f
+//Out: an instance of Flower with info from f
+Flower::Flower(const Flower &f){
+	cout << "copy constructor" << endl;
+	this->name = new char[strlen(f.name) + 1];
+	strcpy_s(this->name, strlen(f.name) + 1, f.name);
+	this->price = f.price;
+}
+
+
+//Descr: distroy a flower 
+//In: a flower 
+//Out: - (destructor)
+Flower::~Flower(){
+	if (this->name != NULL){
+		cout << "destructor of flower " << name << endl;
+		delete[] this->name;
+		this->name = NULL;
+	}
+}
+
+
+
+
+class Flower{
+private:
+	char* name;
+	int price;
+public:
+	Flower();
+	Flower(char* name, int p);
+	Flower(const Flower &f);
+	~Flower();
+	char* getName();
+	int getPrice();
+	void setName(char* n);
+	void setPrice(int p);
+	char* toString();
+	bool compare(Flower &f);
+
+	Flower& operator=(const Flower& b);
+};
+
+
+//Descr: create a flower 
+//In: -
+//Out: an instance of Flower
+Flower::Flower(){
+	cout << "default constructor" << endl;
+	this->name = NULL;
+	this->price = 0;
+}
+
+//Descr: create a flower
+//In: a name and a price
+//Out: an instance (with info) of Flower
+Flower::Flower(char* n, int p){
+	cout << "constructor with param" << endl;
+	this->name = new char[strlen(n) + 1];
+	strcpy_s(this->name, strlen(n) + 1, n);
+	this->price = p;
+}
+
+//Descr: create a flower using info from another flower
+//In: a flower f
+//Out: an instance of Flower with info from f
+Flower::Flower(const Flower &f){
+	cout << "copy constructor" << endl;
+	this->name = new char[strlen(f.name) + 1];
+	strcpy_s(this->name, strlen(f.name) + 1, f.name);
+	this->price = f.price;
+}
+
+//Descr: distroy a flower 
+//In: a flower 
+//Out: - (destructor)
+Flower::~Flower(){
+	if (this->name != NULL){
+		cout << "destructor of flower " << name << endl;
+		delete[] this->name;
+		this->name = NULL;
+	}
+}
+
+Flower& Flower::operator=(const Flower& f){
+	cout << "Flower : operator= ... " << endl;	
+	if (this != &f){
+		this->setName(f.name);
+		this->setPrice(f.price);
+	}
+	else
+		cout << "self assignment ... " << endl;
+	return *this;
+}
+
+
+
+
+//Descr: access the price of a flower 
+//In: a flower 
+//Out: the price
+int Flower::getPrice(){
+	return this->price;
+}
+
+//Descr: access the name of a flower 
+//In: a flower 
+//Out: the name
+char* Flower::getName(){
+	return this->name;
+}
+
+//Descr: change the name of a flower 
+//In: a flower and a name
+//Out: the flower with changed name
+void Flower::setName(char* n){
+	if (this->name){
+		delete[] this->name;
+	}
+	this->name = new char[strlen(n) + 1];
+	strcpy_s(this->name, strlen(n) + 1, n);
+}
+
+//Descr: change the price of a flower 
+//In: a flower and a price
+//Out: the flower with changed price
+void Flower::setPrice(int p){
+	this->price = p;
+}
+
+//Descr: convert a flower into a string
+//In: a flower 
+//Out: a string with info about the flower 
+char* Flower::toString(){
+	if (this->name != NULL){
+		int noChars = strlen(this->name) + 1 + 5 + 2;
+		char* s = new char[noChars];
+		char* aux = new char[5];
+		strcpy_s(s, noChars, this->name);
+		strcat_s(s, noChars, ";");
+		_itoa_s(this->price, aux, 5, 10);
+		strcat_s(s, noChars, aux);
+
+		if (aux){
+			delete[] aux;
+			aux = NULL;
+		}
+		strcat_s(s, noChars, ";");
+		return s;
+	}
+	else
+		return "";
+}
+
+//Descr: compare 2 flowers (the current one and a new one)
+//In: two flowers 
+//Out: true/false
+bool Flower::compare(Flower &f){
+	return ((strcmp(this->name, f.name) == 0) && (this->price == f.price));
+}
+
+
+//Descr: create a new Flower (equal to a given Flower f)
+//In: a flower (f)
+//Out: a new flower (equal to f)
+
+
+
+
+
+
+
+------------------------------------------
+
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Persoana{
+
+public:
+    std::string name;
+    Persoana(){
+        this->name = "Ana";
+    }
+    Persoana(const Persoana& pt){
+        this->name = pt.name;
+    }
+};
+
+class Song{
+private:
+    int lenght;
+    string title;
+public:
+     Song();
+     Song(int l, string t);
+     Song(const Song& s);
+     ~Song();
+     Song& operator = (Song &s);
+};
+
+
+class Song {
+private:
+    int length;
+    std::string title;
+public:
+    // default constructor
+    Song() {
+        this->length = 0;
+        this->title = "";
+    }
+
+    // parameterized constructor
+    Song(int length, std::string title) {
+        this->length = length;
+        this->title = title;
+    }
+
+    // copy constructor
+    Song(const Song& other) {
+        this->length = other.length;
+        this->title = other.title;
+    }
+
+    // destructor
+    ~Song() {}
+
+    // copy assignment operator
+    Song& operator=(const Song& other) {
+        if (this != &other) { // check for self-assignment
+            this->length = other.length;
+            this->title = other.title;
+        }
+        return *this;
+    }
+};
+
+class Product{
+private:
+    double price;
+    char* name;
+public:
+    Product();
+    Product(double p,char* n);
+    Product(const Product &p);
+    ~Product();
+    Product &operator=(Product &p);
+
+};
+
+
+class Product {
+private:
+    double price;
+    char* name;
+
+public:
+    Product() {
+        this->price = 0.0;
+        this->name = nullptr;
+    }
+
+    Product(double p, char* n) {
+        this->price = p;
+        int len = strlen(n) + 1;
+        this->name = new char[len];
+        strcpy_s(this->name, len, n);
+    }
+
+    Product(const Product& other) {
+        this->price = other.price;
+        int len = strlen(other.name) + 1;
+        this->name = new char[len];
+        strcpy_s(this->name, len, other.name);
+    }
+
+    ~Product() {
+        delete[] this->name;
+    }
+
+    Product& operator=(Product& p) {
+        if (this != &p) { // check for self-assignment
+            this->price = p.price;
+            delete[] this->name;
+            int len = strlen(p.name) + 1;
+            this->name = new char[len];
+            strcpy_s(this->name, len, p.name);
+
+
+
+
+            this->price = p.price;
+            this->name  = new char[strlen(p.name)+1];
+            strcpy_s(this->name, strlen(p.name)+1, p.name);
+        }
+        return *this;
+    }
+};
+
+
+
+
+
+
+class Word{
+    char* letters;
+public:
+    Word(char letters[]);
+    ~Word();
+    Word& operator = (Word& w);
+
+    Word(Word& w);
+
+    friend ostream& operator<<(ostream& os, const Word& w);
+    friend istream& operator>>(istream& is, Word& w);
+
+};
+
+Word::Word(char s[]) {
+    cout<<"Constructor"<<endl;
+    this->letters = new char [strlen(s)+1];
+    strcpy_s(this->letters, strlen(s)+1,s);
+
+}
+
+
+Word::Word(Word& w) {
+    cout<<"Copy constructor"<<endl;
+    this->letters = new char [strlen(w.letters)+1];
+    strcpy_s(this->letters, strlen(w.letters)+1,w.letters);
+
+}
+
+Word::~Word() {
+    cout<<"Destructor"<<endl;
+    delete[] this->letters;
+    this->letters = NULL;
+}
+
+Word &Word::operator=(Word &w) {
+    cout<<"Operator = overloading"<<endl;
+    delete[] this->letters;
+
+    this->letters = new char [strlen(w.letters)+1];
+    strcpy_s(this->letters, strlen(w.letters)+1,w.letters);
+    return *this;
+}
+
+ostream& operator<<(ostream& os, const Word& w) {
+    os << w.letters;
+    return os;
+}
+
+istream& operator>>(istream& is, Word& w) {
+    char temp[100];
+    is >> temp;
+    delete[] w.letters;
+    w.letters = new char[strlen(temp) + 1];
+    strcpy_s(w.letters, strlen(temp) + 1, temp);
+    return is;
+}
+
+
+int main()
+{
+    Persoana p;
+    //p.name = "Maria";
+    Persoana p2(p);
+    std::cout<<p.name<<" "<<p2.name;
+
+    char word[] = "word";
+    Word w1(word), w2=w1 ;
+    //Word w2 (w1);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
