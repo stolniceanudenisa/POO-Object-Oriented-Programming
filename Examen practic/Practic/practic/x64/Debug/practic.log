@@ -1,0 +1,3 @@
+﻿  service.cpp
+C:\Users\40766\source\repos\practic\service.cpp(90): warning C4715: 'Service::cumparare_rochie': not all control paths return a value
+  practic.vcxproj -> C:\Users\40766\source\repos\practic\x64\Debug\practic.exe

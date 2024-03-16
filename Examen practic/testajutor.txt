@@ -1,0 +1,165 @@
+vector<Melodie> Service::filtrare_gen(string gen)
+{
+	//metoda 1
+	vector<Melodie> filteredmelodii1;
+	
+
+	//for (int i = 0; i < this->repofile.getAll().size(); i++)
+	//{
+	//	Melodie melodie = this->repofile.getAll()[i];
+	//	if (melodie.getGen() == gen)
+	//		filteredmelodii.push_back(melodie);
+	//}
+	//return filteredmelodii1;
+	 
+
+	//metoda 2 cu copy if
+	vector<Melodie> melodii = this->repofile.getAll();
+	vector<Melodie> filteredmelodii2;
+	copy_if(melodii.begin(), melodii.end(), back_inserter(filteredmelodii2), [gen](Melodie m) {return m.getGen() == gen; });
+	return filteredmelodii2;
+
+	
+}
+
+
+
+
+vector<Melodie> Service::sortare_durata()
+{
+	vector<Melodie> copie = this->getAll();
+	sort(copie.begin(), copie.end(), [](Melodie m1, Melodie m2) {return m1.getDurata() < m2.getDurata(); });
+	return copie;
+}
+
+
+
+
+
+#include "melodii.h"
+#include "repofile.h"
+#include "validator.h"
+#include "exceptii.h"
+#include "service.h"
+#include <assert.h>
+
+class Teste {
+private:
+	void testdomain();
+	void testrepo();
+	void testservice();
+	void testvalidator();
+public:
+	void run_all();
+};
+
+
+
+
+#include "teste.h"
+
+void Teste::testdomain()
+{
+	Melodie m;
+
+	Melodie m1("Dor de tine", "Vescan", "Rap", 3);
+	assert(m.getDenumire() == "");
+	assert(m.getCantaret() == "");
+	assert(m.getGen() == "");
+	assert(m.getDurata() == 0);
+
+	assert(m1.getDenumire() == "Dor de tine");
+	assert(m1.getCantaret() == "Vescan");
+	assert(m1.getGen() == "Rap");
+	
+	Melodie m2(m1);
+	assert(m2.getDenumire() == "Dor de tine");
+	assert(m2.getCantaret() == "Vescan");
+	assert(m2.getGen() == "Rap");
+	assert(m2.getDurata() == 3);
+
+
+	//test bool operator
+	assert(m1 == m2);
+	assert(m1 == m1);
+	assert(m2 == m2);
+	assert(!(m1 == m));
+	assert(!(m2 == m));
+
+
+}
+
+void Teste::testrepo()
+{
+	Validator validator;
+	RepoFile repo("test.txt", validator);
+	 
+	assert(repo.getAll()[0].getDenumire() == "clairedelune");
+
+	repo.addmelodie(Melodie("dd", "Vescan", "Rap", 3));
+	
+	Melodie m1("dd", "Vescan", "Rap", 3);
+	repo.deletemelodie(m1);
+
+
+	assert(repo.getAll().size() == 9);
+	assert(repo.find("Dordetine") == -1);
+
+	repo.updatemelodie(Melodie("clairedelune", "Vescan", "Rap", 3));
+	assert(repo.getAll()[0].getDenumire() == "clairedelune");
+}
+
+void Teste::testservice()
+{
+	Validator validator;
+	RepoFile repo("test.txt", validator);
+	Service service(repo);
+	assert(service.getAll()[0].getDenumire() == "clairedelune");
+	service.addmelodie("uu", "Vescan", "Rap", 3);
+	assert(service.getAll().size() == 10);
+	service.deletemelodie("uu");
+	assert(service.getAll().size() == 9);
+	service.updatemelodie("clairedelune", "Vescan", "Rap", 3);
+	assert(service.getAll()[0].getDenumire() == "clairedelune");
+
+	assert(service.filtrare_gen("Rap").size() == 1);
+	assert(service.filtrare_gen("Rap")[0].getDenumire() == "clairedelune");
+	assert(service.sortare_durata()[0].getDenumire() == "aeroplane");
+	assert(service.sortare_denumire(true)[0].getDenumire() == "a");
+	assert(service.sortare_denumire(false)[0].getDenumire() == "mandwozky");
+	assert(service.afisare_melodii_sub_4_minute().size() == 5);
+	//assert(service.sortare_cantaret_denumire()[0].getCantaret() == "b");
+
+}
+
+void Teste::testvalidator()
+{
+	Validator validator;
+	Melodie m1("a","b", "c", 3);
+	try {
+		validator.validate(m1);
+	}
+	catch (...)
+	{
+		assert(false);
+	}
+	Melodie m2("", "b", "c", -3);
+	try {
+		validator.validate(m2);
+		assert(false);
+	}
+	catch (ValidationException& e)
+	{
+		assert(true);
+	}
+
+}
+
+void Teste::run_all()
+{
+	testdomain();
+	testrepo();
+	testservice();
+	testvalidator();
+}
+

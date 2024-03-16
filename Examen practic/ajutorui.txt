@@ -1,0 +1,377 @@
+#include"service.h"
+
+class UI {
+private:
+	Service& service;
+	vector<Melodie> undo;
+
+public:
+	UI(Service& service);
+	void run_menu();
+	void display_menu();
+	void list_melodii();
+	void addmelodie();
+	void insertmelodie();
+	void deletemelodie();
+	void delete_between();
+	void updatemelodie();
+	void update_anumit();
+	void filtrare_gen();
+	void sortare_durata();
+	void sortare_denumire();
+	void sortare_cantaret_denumire();
+	void max_durata();
+	void cautare_melodie();
+	void numar_de_melodii_cantaret();
+	void afisare_melodii_sub_4_minute();
+	void durata_min_max();
+	void undo_op();
+	void generare_random();
+	void vizualizare_per_gen();
+	 
+};
+
+
+
+#include "ui.h"
+#include "exceptii.h"
+UI::UI(Service& service) : service(service)
+{
+	//this->undo = service.getAll();
+}
+
+void UI::run_menu()
+{
+	string optiune;
+	bool optiunecorecta;
+	while (true)
+	{
+		cout << endl;
+		this->display_menu();
+		cout << endl;
+		optiunecorecta = false;
+		cout << "Introduceti optiunea: ";
+		getline(cin, optiune);
+		if (optiune == "1")
+		{
+			optiunecorecta = true;
+			this->addmelodie();
+		}
+		else if (optiune == "2")
+		{
+			optiunecorecta = true;
+			this->deletemelodie();
+		}
+
+		else if (optiune == "a")
+		{
+			optiunecorecta = true;
+			this->list_melodii();
+		}
+		else if (optiune == "x")
+		{
+			break;
+		}
+	}
+}
+
+void UI::display_menu()
+{
+	cout << "1.Adauga melodie\n";
+	cout << "2.Sterge melodie\n";
+	cout << "a.Afisare melodii\n";
+	cout << "x.Exit\n";
+}
+
+void UI::list_melodii()
+{
+	vector<Melodie> melodii = this->service.getAll();
+	if (melodii.size() == 0)
+	{
+		cout<<"Nicio melodie."<<'\n';
+		return;
+	}
+	for(int i=0; i<melodii.size(); i++)
+		cout<<melodii[i].toString()<<'\n';
+}
+
+
+void UI::addmelodie()
+{
+	string denumire, cantaret, gen;
+	int durata;
+	cout << "Denumire: ";
+	cin >> denumire;
+	cout << "Cantaret: ";
+	cin >> cantaret;
+	cout << "Gen: ";
+	cin >> gen;
+	cout << "Durata: ";
+	cin >> durata;
+	this->undo = service.getAll();
+
+	try {
+	this->service.addmelodie(denumire, cantaret, gen, durata);
+	}
+	catch (ValidationException& ve)
+	{
+		cout << ve.what() << endl;
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr<<e.what()<<'\n';
+	}
+}
+
+void UI::insertmelodie()
+{
+	string denumire, cantaret, gen;
+	int durata, pos;
+	cout << "Pozitia: ";
+	cin >> pos;
+	cout << "Denumire: ";
+	cin >> denumire;
+	cout << "Cantaret: ";
+	cin >> cantaret;
+	cout << "Gen: ";
+	cin >> gen;
+	cout << "Durata: ";
+	cin >> durata;
+	this->undo = service.getAll();
+
+	try {
+		this->service.insertmelodie(denumire, cantaret, gen, durata, pos);
+	}
+	catch (ValidationException& ve)
+	{
+		cout << ve.what() << endl;
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr << e.what() << '\n';
+	}
+}
+
+void UI::deletemelodie()
+{
+	string denumire;
+	cout << "Denumirea melodiei ce se va sterge: ";
+	cin >> denumire;
+	try {
+		this->service.deletemelodie(denumire);
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr << e.what() << '\n';
+	}
+}
+
+void UI::delete_between()
+{
+int start, end;
+	cout << "Start: ";
+	cin >> start;
+	cout << "End: ";
+	cin >> end;
+try {
+		this->service.delete_between(start, end);
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr << e.what() << '\n';
+	}
+}
+
+void UI::updatemelodie()
+{
+	string denumire, cantaret, gen;
+	int durata;
+	cout << "Denumirea melodiei care va fi modificata: ";
+	cin >> denumire;
+	cout << "Cantaret: ";
+	cin >> cantaret;
+	cout << "Gen: ";
+	cin >> gen;
+	cout << "Durata: ";
+	cin >> durata;
+
+	try {
+		this->service.updatemelodie(denumire, cantaret, gen, durata);
+	}
+	catch (ValidationException& ve)
+	{
+		cout << ve.what() << endl;
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr << e.what() << '\n';
+	}
+}
+
+ 
+void UI::update_anumit()
+{
+	string denumire, cantaret, gen;
+	int durata;
+	cout << "Denumirea melodiei a carei DOAR DURATA va fi modificata: ";
+	cin >> denumire;
+	cout << "Durata: ";
+	cin >> durata;
+	try {
+		this->service.update_anumit(denumire, cantaret, gen, durata);
+	}
+	catch (ValidationException& ve)
+	{
+		cout << ve.what() << endl;
+	}
+	catch (const invalid_argument& e)
+	{
+		cerr << e.what() << '\n';
+	}
+}
+
+void UI::filtrare_gen()
+{
+	string gen;
+	cout << "Genul dupa care se va face filtrarea: ";
+	cin >> gen;
+	vector<Melodie> melodii = this->service.filtrare_gen(gen);
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+void UI::sortare_durata()
+{
+
+	vector<Melodie> melodii = this->service.sortare_durata();
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+void UI::sortare_denumire()
+{
+	int ordine;
+	cout<<"1.Crescator\n";
+	cout<<"2.Descrescator\n";
+	cin >> ordine;
+	bool ascending = ordine == 1;
+	vector<Melodie> melodii = this->service.sortare_denumire(ascending);
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+void UI::sortare_cantaret_denumire()
+{
+ vector<Melodie> melodii = this->service.sortare_cantaret_denumire();
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+void UI::max_durata()
+{
+int durata;
+	
+	vector<Melodie> melodii = this->service.max_durata();
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+void UI::cautare_melodie()
+{
+string denumire;
+	cout << "Denumirea melodiei cautate: ";
+	cin >> denumire;
+	vector<Melodie> melodii =  this->service.cautare_melodie(denumire);
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+//afisarea numelui cantaretului si a numarului de melodii cantate
+void UI::numar_de_melodii_cantaret()
+{
+	vector<Melodie> cantareti = this->service.numar_de_melodii_cantaret();
+	if (cantareti.size() == 0)
+	{
+		cout << "Niciun cantaret." << '\n';
+		return;
+	}
+	for (int i = 0; i < cantareti.size(); i++)
+		cout << cantareti[i].toString() << '\n';
+}
+
+void UI::afisare_melodii_sub_4_minute()
+{
+	vector<Melodie> melodii = this->service.afisare_melodii_sub_4_minute();
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+void UI::durata_min_max()
+{
+	int min, max;
+	cout << "Durata minima: ";
+	cin >> min;
+	cout << "Durata maxima: ";
+	cin >> max;
+	vector<Melodie> melodii = this->service.durata_min_max(min, max);
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	for (int i = 0; i < melodii.size(); i++)
+		cout << melodii[i].toString() << '\n';
+}
+
+
+void UI::vizualizare_per_gen()
+{
+	 auto melodii = this->service.vizualizare_per_gen();
+	if (melodii.size() == 0)
+	{
+		cout << "Nicio melodie." << '\n';
+		return;
+	}
+	cout << "Statistica melodiilor pe genuri:\n";
+	for (auto& pair : melodii) {
+			cout<<pair.first<<" "<<pair.second<<'\n';
+	}
+		 
+}
+
+ 

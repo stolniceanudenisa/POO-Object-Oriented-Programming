@@ -1,0 +1,10 @@
+1 rochie1 XS alb 3 55 True
+2 rochie2 S negru 2 60 False 
+3 rochie3 M albastru 1 65 True
+4 rochie4 L rosu 1 70 False
+5 rochie5 XL verde 1 75 False
+6 rochie6 XS galben 3 55 True
+7 rochie7 S alb 2 60 False
+8 rochie8 M negru 1 65 True
+9 rochie9 L portocaliu 1 70 True
+10 rochie10 XL albastru 0 75 False

@@ -1,0 +1,4 @@
+Category|Illness|symptoms
+Skin pox|Yellow horricus|spots,migraines
+Respiratory|Covid-19|fever,fatigue,cough
+Respiratory|Flu|cough,fever

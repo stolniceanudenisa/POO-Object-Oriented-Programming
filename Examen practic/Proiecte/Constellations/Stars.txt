@@ -1,0 +1,11 @@
+A67,Andromeda,5,5,5
+S2,Andromeda,5,5,9
+A13,Andromeda,12,1212121212,22
+X3z,Pegasus,23,43,34
+AC,Pegasus,13,13,13
+B34,Ursa,12,4,34
+Sirius,Ursa,3,3,3
+Regulus,Ursa,34,43,56
+B234,c1,23,23,23
+Polo,c1,13,27,12
+Marco,Pegasus,22,22,22

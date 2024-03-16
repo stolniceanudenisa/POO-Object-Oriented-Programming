@@ -1,0 +1,658 @@
+Se considera urmatoarele definitii de clase:
+
+ 
+
+class Employee {
+
+protected:
+
+               string name;
+
+public:
+
+               Employee()
+
+               {
+
+                              this->name = "";
+
+               };
+
+               Employee(string name)
+
+               {
+
+                              this->name = name;
+
+               };
+
+               Employee(const Employee& e)
+
+               {
+
+                              this->name = e.name;
+
+               };
+
+               string work()
+
+               {
+
+                              return "My name is " + this->name;
+
+               };
+
+};
+
+ 
+
+class Driver: public Employee {
+
+public:
+
+               Driver(): Employee(){};
+
+               Driver(string name) : Employee(name){};
+
+               string work()
+
+{
+
+                              return Employee::work() + " and I work as a driver";
+
+};
+
+}; 
+
+ 
+
+ 
+
+ 
+
+class Accountant: public Employee {
+
+public:
+
+               Accountant(): Employee(){};
+
+               Accountant(string name): Employee(name){};
+
+               string work()
+
+{
+
+                              return Employee::work() + " and I work as an accountant";
+
+};
+
+}; 
+
+Precizati ce se va afisa in cazul executarii urmatoarelor instructiuni:
+
+ 
+
+string name1 = "Anna";
+
+string name2 = "John";
+
+string name3 = "Lucia";
+
+Employee* e1 = new Employee(name1);
+
+Employee* e2 = new Driver(name2);
+
+Accountant* e3 = new Accountant(name3);
+
+cout<<e1->work() << endl;
+
+cout<<e2->work() << endl;
+
+cout<<e3->work() << endl;
+
+
+
+
+My name is Anna
+
+My name is John
+
+My name is Lucia
+
+
+
+
+My name is Anna
+
+My name is John and I work as a driver
+
+My name is Lucia and I work as an accountant
+
+
+
+
+My name is Anna
+
+My name is John
+
+My name is Lucia and I work as an accountant
+ 
+
+
+
+void RepoFile::addmelodie(Melodie m)
+{
+	this->validator.validate(m);
+	if(find(m.getDenumire())== 1)
+		throw invalid_argument("Melodia exista deja!");
+	else
+	{
+		this->melodii.push_back(m);
+		
+	}
+	this->savetofile();
+}
+
+void RepoFile::insertmelodie(Melodie m, int pos)
+{
+	this->validator.validate(m);
+	if (find(m.getDenumire()) == 1)
+		throw invalid_argument("Melodia exista deja!");
+	else
+	{
+		this->melodii.insert(this->melodii.begin() + pos, m);
+	}
+	this->savetofile();
+}
+
+void RepoFile::updatemelodie(Melodie m)
+{
+	this->validator.validate(m);
+	if (find(m.getDenumire()) == -1)
+		throw invalid_argument("Melodia nu exista!");
+	else
+	{
+		for (int i = 0; i < this->melodii.size(); i++)
+			if (this->melodii[i].getDenumire() == m.getDenumire())
+			{
+				this->melodii[i] = m;
+			
+			}
+	}
+	this->savetofile();
+}
+
+
+
+//updateaza doar durata melodiei cu denumirea data
+void RepoFile::update_anumit(Melodie m)
+{
+	this->validator.validate(m);
+	if (find(m.getDenumire()) == -1)
+		throw invalid_argument("Melodia nu exista!");
+	else
+	{
+		for (int i = 0; i < this->melodii.size(); i++)
+			if (this->melodii[i].getDenumire() == m.getDenumire())
+			{
+				this->melodii[i].setDurata(m.getDurata());
+			}
+	}
+	this->savetofile();
+}
+
+void RepoFile::deletemelodie(Melodie m)
+{
+	if(find(m.getDenumire()) == -1)
+		throw invalid_argument("Melodia nu exista!");
+	else
+	{
+		for (int i = 0; i < this->melodii.size(); i++)
+			if (this->melodii[i].getDenumire() == m.getDenumire())
+				this->melodii.erase(this->melodii.begin() + i);
+	}
+	this->savetofile();
+}
+
+void RepoFile::delete_between( int start, int end)
+{
+	vector <Melodie> nou;
+	if (start < 0 || end > this->melodii.size())
+		throw invalid_argument("Pozitii invalide!");
+	else
+		for (int i = 0; i < this->melodii.size(); i++)
+			if (this->melodii[i].getDurata() < start
+				|| this->melodii[i].getDurata() > end)			
+			{
+				nou.push_back(this->melodii[i]);
+				//this->melodii.erase(this->melodii.begin() + start, this->melodii.begin() + end);
+			}
+	this->melodii = nou;	
+	this->savetofile();
+
+
+	/*vector<Melodie>::iterator it = melodii.begin();
+	while (it != melodii.end()) {
+		if (it->getDurata() >= start && it->getDurata() <= end) {
+			it = melodii.erase(it);
+		}
+		else {
+			++it;
+		}
+	}*/
+}
+
+int RepoFile::find(string denumire)
+{
+	for(int i=0;i<this->melodii.size();i++)
+		if (this->melodii[i].getDenumire() == denumire)
+			return 1;
+	return -1;
+}
+
+int RepoFile::find_melodie(Melodie melodie)
+{
+	
+for (int i = 0; i < this->melodii.size(); i++)
+		if (this->melodii[i].getDenumire() == melodie.getDenumire() && this->melodii[i].getCantaret() == melodie.getCantaret() && this->melodii[i].getGen() == melodie.getGen() && this->melodii[i].getDurata() == melodie.getDurata())
+			return i;
+	return -1;
+}
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+
+using namespace std;
+int main()
+{
+    
+}
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+
+void Service::addmelodie(string denumire, string cantaret, string gen, int durata)
+{
+	
+	Melodie m(denumire, cantaret, gen, durata);
+	this->repofile.addmelodie(m);
+
+}
+
+void Service::updatemelodie(string denumire, string cantaret, string gen, int durata)
+{
+	Melodie m(denumire, cantaret, gen, durata);
+	this->repofile.updatemelodie(m);
+
+}
+
+void Service::deletemelodie(string denumire)
+{
+	Melodie m(denumire, "", "", 0);
+	this->repofile.deletemelodie(m);
+}
+
+void Service::delete_between(int start, int end)
+{
+	this->repofile.delete_between(start, end);
+}
+
+void Service::insertmelodie(string denumire, string cantaret, string gen, int durata, int pos)
+{
+	Melodie m(denumire, cantaret, gen, durata);
+	this->repofile.insertmelodie(m, pos);
+}
+
+
+//updateaza doar durata melodiei cu denumirea data
+void Service::update_anumit(string denumire, string cantaret, string gen, int durata)
+{
+	Melodie m(denumire, cantaret, gen, durata);
+	this->repofile.update_anumit(m);	
+}
+
+//melodia cu cea mai mare durata
+vector<Melodie> Service::max_durata()
+{
+	vector<Melodie> melodii = this->repofile.getAll();
+	vector<Melodie> nou;
+    int max = melodii[0].getDurata();
+	for (int i = 1; i < melodii.size(); i++)
+	{
+		if (melodii[i].getDurata() > max)
+			max = melodii[i].getDurata();
+	}
+	for (int i = 1; i < melodii.size(); i++)
+	{
+		if (melodii[i].getDurata() == max)
+			nou.push_back(melodii[i]);
+	}
+	 return nou;
+
+}
+
+ 
+ 
+
+vector<Melodie> Service::filtrare_gen(string gen)
+{
+	//metoda 1
+	vector<Melodie> filteredmelodii1;
+	
+
+	//for (int i = 0; i < this->repofile.getAll().size(); i++)
+	//{
+	//	Melodie melodie = this->repofile.getAll()[i];
+	//	if (melodie.getGen() == gen)
+	//		filteredmelodii.push_back(melodie);
+	//}
+	//return filteredmelodii1;
+	//----------------------
+
+	//metoda 2 cu copy if
+	vector<Melodie> melodii = this->repofile.getAll();
+	vector<Melodie> filteredmelodii2;
+	copy_if(melodii.begin(), melodii.end(), back_inserter(filteredmelodii2), [gen](Melodie m) {return m.getGen() == gen; });
+	return filteredmelodii2;
+
+	
+}
+
+vector<Melodie> Service::durata_min_max(int min, int max)
+{
+	vector<Melodie> melodii = this->repofile.getAll();
+	vector<Melodie> cautare_melodii;
+	for (int i = 0; i < melodii.size(); i++)
+	{
+		if (melodii[i].getDurata() >= min && melodii[i].getDurata() <= max)
+			cautare_melodii.push_back(melodii[i]);
+	}
+	return cautare_melodii;
+}
+
+vector<Melodie> Service::sortare_durata()
+{
+	vector<Melodie> copie = this->getAll();
+	sort(copie.begin(), copie.end(), [](Melodie m1, Melodie m2) {return m1.getDurata() < m2.getDurata(); });
+	return copie;
+}
+
+vector<Melodie> Service::sortare_denumire(bool ascending)
+{
+	 vector<Melodie> copie = this->getAll();
+	if (ascending)
+		sort(copie.begin(), copie.end(), [](Melodie m1, Melodie m2) {return m1.getDenumire() < m2.getDenumire(); });
+	else
+		sort(copie.begin(), copie.end(), [](Melodie m1, Melodie m2) {return m1.getDenumire() > m2.getDenumire(); });
+	return copie;
+}
+
+//sorteaza dupa cantaret, iar daca cantaretul e acelasi, dupa denumire
+vector<Melodie> Service::sortare_cantaret_denumire()
+{
+	vector<Melodie> copie = this->getAll();
+	sort(copie.begin(), copie.end(), [](Melodie m1, Melodie m2) {return m1.getCantaret() < m2.getCantaret() || (m1.getCantaret() == m2.getCantaret() && m1.getDenumire() < m2.getDenumire()); });
+	return copie;
+}
+
+//functie ce numara pentru fiecare cantaret numarul de melodii si face un pair cu numele cantaretului si numarul de melodii
+vector<Melodie> Service::numar_de_melodii_cantaret()
+{
+	vector<Melodie> melodii = this->repofile.getAll();
+	vector<Melodie> numar_melodii_cantaret;
+	vector<string> cantareti;
+
+	for (int i = 0; i < melodii.size(); i++)
+	{
+		string cantaret = melodii[i].getCantaret();
+		if (find(cantareti.begin(), cantareti.end(), cantaret) == cantareti.end())
+		{
+			cantareti.push_back(cantaret);
+			int nr = 0;
+			for (int j = 0; j < melodii.size(); j++)
+			{
+				if (melodii[j].getCantaret() == cantaret)
+					nr++;
+			}
+			Melodie m("", cantaret, "", nr);
+			numar_melodii_cantaret.push_back(m);
+		}
+	}
+	return numar_melodii_cantaret;
+}
+
+vector<pair<string, string>> Service::vizualizare_per_gen()
+{
+	map<string, string> melodii_per_gen;
+	vector<Melodie> melodii = this->repofile.getAll();
+	for (int i = 0; i < melodii.size(); i++)
+	{
+		string gen = melodii[i].getGen();
+		if (melodii_per_gen.find(gen) == melodii_per_gen.end())
+			melodii_per_gen[gen] = melodii[i].getDenumire();
+		else
+			melodii_per_gen[gen] = melodii_per_gen[gen] + ", " + melodii[i].getDenumire();
+	}
+	vector<pair<string, string>> rez;
+	for (auto it = melodii_per_gen.begin(); it != melodii_per_gen.end(); it++)
+		rez.push_back(make_pair(it->first, it->second));
+	return rez;
+}
+
+
+vector<Melodie> Service::afisare_melodii_sub_4_minute()
+{
+	vector<Melodie> melodii;
+	for (int i = 0; i < this->repofile.getAll().size(); i++)
+	{
+		Melodie m= this->repofile.getAll()[i];
+		if (m.getDurata() < 4)
+			melodii.push_back(m);
+	}
+	return melodii;	
+}
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+clasament
+vector<Meci> clasament2();
+
+
+vector<Meci> Service::clasament2()
+{
+    vector<Meci> clasament;
+
+    vector<Meci> meciuri = this->get_all();
+
+    // Parcurgem fiecare meci si calculam punctajele
+    for (auto& meci : meciuri) {
+        int punctaj1 = 0;
+        int punctaj2 = 0;
+
+        // Calculam punctajul pentru prima echipa
+        if (meci.get_scor1() > meci.get_scor2()) {
+            punctaj1 = 3; // Echipa 1 a castigat
+        }
+        else if (meci.get_scor1() == meci.get_scor2()) {
+            punctaj1 = 1; // Meciul a fost egal
+        }
+
+        // Calculam punctajul pentru a doua echipa
+        if (meci.get_scor2() > meci.get_scor1()) {
+            punctaj2 = 3; // Echipa 2 a castigat
+        }
+        else if (meci.get_scor2() == meci.get_scor1()) {
+            punctaj2 = 1; // Meciul a fost egal
+        }
+
+        // Actualizam punctajele pentru meciurile din clasament
+        Meci meci1(meci.get_echipa1(), meci.get_echipa2(), punctaj1, punctaj2);
+        Meci meci2(meci.get_echipa2(), meci.get_echipa1(), punctaj2, punctaj1);
+        clasament.push_back(meci1);
+        clasament.push_back(meci2);
+    }
+
+    // Sortam clasamentul in ordine descrescatoare dupa punctaje
+    sort(clasament.begin(), clasament.end(), []( Meci m1,  Meci m2) {
+        return m1.get_scor1() + m1.get_scor2() > m2.get_scor1() + m2.get_scor2();
+        });
+
+    return clasament;
+}
+
+ 
+void UI::clasament2()
+{
+	vector<Meci> clasament = this->service.clasament2();
+
+	cout << "Clasament:\n";
+	int pozitie = 1;
+	for (auto& meci : clasament) {
+		cout << pozitie << ". " << meci.get_echipa1() << " - " << meci.get_echipa2() << ": "
+			<< meci.get_scor1() << " puncte, " << meci.get_scor2() << " puncte\n";
+		pozitie++;
+	}
+}
+
+
+
+
+-----------------------------------
+
+int Service::nr_profesori_greva()
+{
+	int nr = 0;
+	for (auto p : this->repo.getAll())
+	{
+		if(p.getGreva() == "da")
+			nr++;
+	}
+	return nr;
+}
+
+vector<Profesor> Service::disciplina_cu_cei_mai_multi_profi_greva()
+{
+	vector<Profesor> profesori = this->repo.getAll();
+	vector<Profesor> rez;
+	int max = 0;
+	for (auto p : profesori)
+	{
+		if (p.getGreva() == "da")
+		{
+			int nr = 0;
+			for (auto q : profesori)
+			{
+				if (q.getDisciplina() == p.getDisciplina() && q.getGreva() == "da")
+					nr++;
+			}
+			if (nr > max)
+			{
+				max = nr;
+				rez.clear();
+				rez.push_back(p);
+			}
+			else if (nr == max)
+				rez.push_back(p);
+		}
+	}
+	return rez;
+}
+
+vector<Profesor> Service::clasa_cu_cei_mai_multi_profi_greva()
+{
+	vector<Profesor> profesori = this->repo.getAll();
+	vector<Profesor> rez;
+	int max = 0;
+	for (auto p : profesori)
+	{
+		if (p.getGreva() == "da")
+		{
+			int nr = 0;
+			for (auto q : profesori)
+			{
+				if (q.getClase() == p.getClase() && q.getGreva() == "da")
+					nr++;
+			}
+			if (nr > max)
+			{
+				max = nr;
+				rez.clear();
+				rez.push_back(p);
+			}
+			else if (nr == max)
+				rez.push_back(p);
+		}
+	}
+	return rez;
+}
+
+
+
+
+
+
+void UI::nrprofigreva()
+{
+	int nr = this->service.nr_profesori_greva();
+	cout << "Numarul de profesori in greva este: " << nr << '\n';
+}
+
+void UI::disciplina_cu_cei_mai_multi_profi_greva()
+{
+	vector<Profesor> profesori = this->service.disciplina_cu_cei_mai_multi_profi_greva();
+	if (profesori.size() == 0)
+	{
+		cout << "Nu exista profesori in greva." << '\n';
+		return;
+	}
+	for (int i = 0; i < profesori.size(); i++)
+		cout << profesori[i].getDisciplina() << '\n';
+}
+
+void UI::clasa_cu_cei_mai_multi_profi_greva()
+{
+	vector<Profesor> profesori = this->service.clasa_cu_cei_mai_multi_profi_greva();
+	if (profesori.size() == 0)
+	{
+		cout << "Nu exista profesori in greva." << '\n';
+		return;
+	}
+	for (int i = 0; i < profesori.size(); i++)
+	{
+		cout << "Clasa: "<<profesori[0].getClase();
+		break;
+	}
+}
+
+--------------------------------
